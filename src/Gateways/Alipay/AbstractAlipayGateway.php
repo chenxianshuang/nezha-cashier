@@ -387,6 +387,7 @@ abstract class AbstractAlipayGateway extends AbstractGateway
             'TRADE_SUCCESS'  => 'paid',
             'WAIT_BUYER_PAY' => 'created',
             'TRADE_CLOSED'   => 'closed',
+            'TRADE_FINISHED' => 'completed',
         ];
 
         return $map[$status];

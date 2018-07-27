@@ -44,6 +44,7 @@ class Charge extends AbstractOption
             [
                 'created',
                 'paid',
+                'completed',
                 'closed',
             ]
         );
