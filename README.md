@@ -22,6 +22,8 @@
 | paypal_express_checkout | PayPal 快速结账 | 支付/支付查询 | 支付通知 | 不稳定 |
 | pingan_wechat_h5 | 平安银行微信H5支付 | 支付/支付查询/退款 | 支付 | |
 | wechatoversea_official | 微信跨境公众号支付 | 支付/支付查询/退款 | 支付 | |
+| converge_h5 | 汇聚支付（h5） | 支付/支付查询 | 支付 | |
+| alipayoversea_wap | 境外支付宝手机网站支付 | 支付/支付查询/退款| 支付 | |
 
 ### 介绍
 
