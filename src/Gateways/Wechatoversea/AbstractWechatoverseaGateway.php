@@ -42,7 +42,7 @@ abstract class AbstractWechatoverseaGateway extends AbstractGateway
                     'service' => self::UNIFIED_ORDER_SERVICE,
                     'body'             => $form->get('subject'),
                     'out_trade_no'     => $form->get('order_id'),
-                    'total_fee'        => $form->get('amount'),
+                    'total_fee'        => number_format($form->get('amount') * $this->config->get('rate', 1), 0, '.', ''),
                     'mch_create_ip' => $form->get('user_ip'),
                     'notify_url'       => $this->config->get('notify_url'),
                     'detail'           => $form->get('description'),
@@ -165,6 +165,7 @@ abstract class AbstractWechatoverseaGateway extends AbstractGateway
     public function chargeNotify(array $receives): array
     {
         $amount = $receives['cash_fee'] + ($receives['coupon_fee'] ?? 0);
+        $amount = number_format($amount / $this->config->get('rate', 1), 0, '.', '');
 
         return [
             'order_id'              => $receives['out_trade_no'],
