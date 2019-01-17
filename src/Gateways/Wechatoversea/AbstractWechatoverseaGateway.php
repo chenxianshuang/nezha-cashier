@@ -71,8 +71,8 @@ abstract class AbstractWechatoverseaGateway extends AbstractGateway
                     'service' => self::UNIFIED_ORDER_REFUND,
                     'out_trade_no'  => $form->get('order_id'),
                     'out_refund_no' => $form->get('refund_id'),
-                    'total_fee'     => $form->get('total_amount'),
-                    'refund_fee'    => $form->get('refund_amount'),
+                    'total_fee'     => number_format($form->get('total_amount') * $this->config->get('rate', 1), 0, '.', ''),
+                    'refund_fee'    => number_format($form->get('refund_amount') * $this->config->get('rate', 1), 0, '.', ''),
                     'op_user_id' => $this->config->get('mch_id'),
                 ],
                 $form->get('extras')
