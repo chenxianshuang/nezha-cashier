@@ -125,7 +125,7 @@ class ExpressCheckout extends AbstractGateway
             'currency'              => $receives['mc_currency'],
             'buyer_identifiable_id' => $transaction['L_EMAIL0'],
             'paid_at'               => strtotime($receives['payment_date']),
-            'tax'                   => $receives['payment_fee'],
+            'tax'                   => $receives['payment_fee'] ?? '',
             'raw'                   => [
                 'notification' => $receives,
                 'query'        => $transaction,
