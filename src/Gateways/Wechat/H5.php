@@ -35,7 +35,7 @@ class H5 extends AbstractWechatGateway
         if ($this->config->get('spider')) {
             $ip = $this->config->get('spider_ip');
             $this->config->get('spider_by_proxy') && $ip = $this->config->get('spider_proxy_ip');
-            $content['spbill_create_ip'] = $ip;
+            $content['spbill_create_ip'] = empty($ip) ? $_SERVER['SERVER_ADDR'] : $ip;
         }
 
         return $content;
