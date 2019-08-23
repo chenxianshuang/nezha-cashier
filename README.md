@@ -24,6 +24,7 @@
 | wechatoversea_official | 微信跨境公众号支付 | 支付/支付查询/退款 | 支付 | |
 | converge_h5 | 汇聚支付（h5） | 支付/支付查询 | 支付 | |
 | alipayoversea_wap | 境外支付宝手机网站支付 | 支付/支付查询/退款| 支付 | |
+| wechatkx_official | 酷享微信公众号支付 | 支付 | 支付通知 |  |
 
 ### 介绍
 
