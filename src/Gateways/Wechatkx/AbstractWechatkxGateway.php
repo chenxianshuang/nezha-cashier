@@ -104,7 +104,7 @@ abstract class AbstractWechatkxGateway extends AbstractGateway
         return [
             'order_id' => $receives['mch_orderid'],
             'status' => $this->formatTradeStatus($receives['paystatus']), // 微信只推送支付完成
-            'trade_sn' => $receives['trade_no'],
+            'trade_sn' => $receives['orderid'],
             'buyer_identifiable_id' => '',
             'buyer_is_subscribed' => 'no',
             'amount' => Amount::dollarToCent($receives['pri_paymoney']),
