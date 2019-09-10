@@ -119,7 +119,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
             'order_id' => $receives['payment_id'],
             'status' => $receives['status'],
             'trade_sn' => $receives['trade_sn'],
-            'amount' => $receives['amount'],
+            'amount' => $receives['amount'] * 10,
             'buyer_identifiable_id' => $receives['buyer_identifiable_id'] ?? '',
             'buyer_name' => '',
             'paid_at' => (isset($receives['paid_at']) ? strtotime($receives['paid_at']) : 0),
