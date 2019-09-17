@@ -55,7 +55,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
             'url' => $url,
             'token' => $payload['token']
         ];
-       
+
 
         return $this->doCharge($response, $form);
     }
@@ -82,7 +82,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
 
         $url = self::REQUEST_GOLD . '/refund';
 
-        $response = $this->request($url, $payload, $this->header());
+        $response = $this->request($url, $payload, $this->header(), 'PUT');
 
         return [
             'refund_sn' => $response['new_trade_no'],
@@ -159,19 +159,35 @@ abstract class AbstractGoldGateway extends AbstractGateway
             'payment_id' => $form->get('order_id')
         ];
         $url = $url = self::REQUEST_GOLD . '/record';
-        $result = $this->request($url, $parameters, $this->header());
+        $result = $this->request($url, $parameters, $this->header(), 'GET');
 
         return [
-            'order_id' => $result['order_id'],
-            'status' => $result['status'],
+            'order_id' => $result['payment_id'],
+            'status' => $this->formatTradeStatus($result['status']),
             'trade_sn' => $result['trade_sn'] ?? '',
             'buyer_identifiable_id' => $result['buyer_identifiable_id'] ?? '',
             'buyer_is_subscribed' => (isset($result['is_subscribe']) ? ('Y' === $result ? 'yes' : 'no') : 'no'),
-            'amount' => $result['amount'],
+            'amount' => $result['amount'] / 10,
             'buyer_name' => '',
             'paid_at' => (isset($result['paid_at']) ? strtotime($result['paid_at']) : 0),
             'raw' => $result['raw'],
         ];
+    }
+
+    /**
+     * @param $status
+     * @return string
+     * @author zc
+     * @time 2019/09/16
+     */
+    protected function formatTradeStatus($status): string
+    {
+        switch ($status) {
+            case 'refund-gold':
+                return 'refund';
+            default:
+                return 'paid';
+        }
     }
 
     /**
@@ -216,7 +232,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
      */
     abstract protected function doCharge(array $response, Charge $form): array;
 
-    protected function request($url, $params, $header)
+    protected function request($url, $params, $header, $method)
     {
         $options = [
             'form_params' => $params,
@@ -224,7 +240,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
         ];
 
         return HttpClient::request(
-            'PUT',
+            $method,
             $url,
             $options,
             function (ResponseInterface $response) {
@@ -261,10 +277,6 @@ abstract class AbstractGoldGateway extends AbstractGateway
     protected function createPayload(array $payload)
     {
         return $payload;
-    }
-    protected function formatTradeStatus($status): string
-    {
-        return [];
     }
 
 }
