@@ -30,7 +30,7 @@ class Coin extends AbstractGoldGateway
     {
         $parameters = [
             'subject' => $form['subject'],
-            'amount' => $form['amount'] / 10,
+            'amount' => $form['amount'] / 100,
             'payment_id' => $form['order_id'],
             'token' => $response['token'],
             'content_type' => self::CONTENT_TYPE,

@@ -39,7 +39,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
             array_merge(
                 [
                     'subject' => $form->get('subject'),
-                    'amount' => $amount / 10,
+                    'amount' => $amount / 100,
                     'order_id' => $form->get('order_id'),
                 ],
                 $this->prepareCharge($form)
@@ -119,7 +119,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
             'order_id' => $receives['payment_id'],
             'status' => $receives['status'],
             'trade_sn' => $receives['trade_sn'],
-            'amount' => $receives['amount'] * 10,
+            'amount' => $receives['amount'] * 100,
             'buyer_identifiable_id' => $receives['buyer_identifiable_id'] ?? '',
             'buyer_name' => '',
             'paid_at' => (isset($receives['paid_at']) ? strtotime($receives['paid_at']) : 0),
@@ -167,7 +167,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
             'trade_sn' => $result['trade_sn'] ?? '',
             'buyer_identifiable_id' => $result['buyer_identifiable_id'] ?? '',
             'buyer_is_subscribed' => (isset($result['is_subscribe']) ? ('Y' === $result ? 'yes' : 'no') : 'no'),
-            'amount' => $result['amount'] / 10,
+            'amount' => $result['amount'] / 100,
             'buyer_name' => '',
             'paid_at' => (isset($result['paid_at']) ? strtotime($result['paid_at']) : 0),
             'raw' => $result['raw'],
