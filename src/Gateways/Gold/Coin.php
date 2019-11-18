@@ -32,6 +32,7 @@ class Coin extends AbstractGoldGateway
             'subject' => $form['subject'],
             'amount' => $form['amount'] / 100,
             'payment_id' => $form['order_id'],
+            'order_id' => $form->get('extras.business_order_id'),
             'token' => $response['token'],
             'content_type' => self::CONTENT_TYPE,
             'host' => self::CONSUME_HOST,
