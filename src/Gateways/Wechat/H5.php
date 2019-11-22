@@ -45,7 +45,7 @@ class H5 extends AbstractWechatGateway
     {
         $url = $response['mweb_url'];
         if (!$this->config->get('spider', false)) {
-            $url .= '&redirect_url='.urlencode($form->get('return_url'));
+            $url .= '&redirect_url='.urlencode($this->config->get('payment_url'));
         } else {
             $url = $this->spider($url);
         }
