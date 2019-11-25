@@ -44,10 +44,11 @@ class H5 extends AbstractWechatGateway
     protected function doCharge(array $response, Charge $form): array
     {
         $url = $response['mweb_url'];
-        if (!$this->config->get('spider', false) && $this->config->get('redirect', false)) {
-            $url .= '&redirect_url='.urlencode($this->config->get('return_url'));
-        } else {
+
+        if ($this->config->get('spider', false)) {
             $url = $this->spider($url);
+        } elseif ($this->config->get('redirect', false)) {
+            $url .= '&redirect_url='.urlencode($this->config->get('return_url'));
         }
 
         return [
