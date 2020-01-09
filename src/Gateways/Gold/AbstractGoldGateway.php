@@ -41,6 +41,7 @@ abstract class AbstractGoldGateway extends AbstractGateway
                     'subject' => $form->get('subject'),
                     'amount' => $amount / 100,
                     'order_id' => $form->get('order_id'),
+                    'notify_url'=> $this->config->get('notify_url')
                 ],
                 $this->prepareCharge($form)
             )

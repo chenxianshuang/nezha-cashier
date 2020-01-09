@@ -34,6 +34,7 @@ class Coin extends AbstractGoldGateway
             'payment_id' => $form['order_id'],
             'order_id' => $form->get('extras.business_order_id'),
             'token' => $response['token'],
+            'notify_url'=> $this->config->get('notify_url'),
             'content_type' => self::CONTENT_TYPE,
             'host' => self::CONSUME_HOST,
         ];
